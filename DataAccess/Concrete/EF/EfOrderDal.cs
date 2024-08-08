@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EF
 {
-    public class EfCategoryDal : BaseEntityRepository<Category, EcommerceCN002Context>, ICategoryDal
+    public class EfOrderDal : BaseEntityRepository<Order, EcommerceCN002Context>, IOrderDal
     {
-        public EfCategoryDal(EcommerceCN002Context context) : base(context)
+        public EfOrderDal(EcommerceCN002Context context): base(context)
         {
             
         }

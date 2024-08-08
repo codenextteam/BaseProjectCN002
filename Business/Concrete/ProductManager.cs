@@ -17,7 +17,7 @@ namespace Business.Concrete
         //cache, log, securedOperation-authoration, optimizasion, transaction
         //crossCuttingConcern => interceptors => araya giren method
 
-        [ValidationAspect(typeof(ProductValidator))]
+        [ValidationAspect<Product>(typeof(ProductValidator))]
         public IResult AddProduct(Product product)
         {
             //ValidationTool.Validation(new ProductValidator(), product);

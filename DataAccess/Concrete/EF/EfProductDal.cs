@@ -12,6 +12,10 @@ namespace DataAccess.Concrete.EF
 {
     public class EfProductDal : BaseEntityRepository<Product, EcommerceCN002Context>, IProductDal
     {
+        public EfProductDal(EcommerceCN002Context context): base(context)
+        {
+            
+        }
         public List<Product> GetAllProductsByCategory(int categoryId)
         {
             throw new NotImplementedException();

@@ -10,48 +10,49 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess.Concrete
 {
-    public class BaseEntityRepository<TEntity, TContext> : IBaseRepository<TEntity>
+    public class BaseEntityRepository<TEntity, TContext>(TContext context) : IBaseRepository<TEntity>
         where TEntity : class, IEntity, new()
         where TContext : DbContext, new()
     {
+        private readonly TContext _context = context;
         public void Add(TEntity entity)
         {
-           using var context = new TContext();
-            var addedEntiry = context.Entry(entity);
+           
+            var addedEntiry = _context.Entry(entity);
             addedEntiry.State = EntityState.Added;
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void Delete(TEntity entity)
         {
-            using var context = new TContext();
-            var removedEntiry = context.Entry(entity);
+          
+            var removedEntiry = _context.Entry(entity);
             removedEntiry.State = EntityState.Modified;
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
      
 
         public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
-            using var context = new TContext();
-            return context.Set<TEntity>().SingleOrDefault(filter);
+        
+            return _context.Set<TEntity>().SingleOrDefault(filter);
         }
 
       
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
-            using TContext context = new TContext();
-             return filter == null? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(filter).ToList();
+         
+             return filter == null? _context.Set<TEntity>().ToList() : _context.Set<TEntity>().Where(filter).ToList();
         }
 
         public void Update(TEntity entity)
         {
-            using var context = new TContext();
-            var updateEntiry = context.Entry(entity);
+           
+            var updateEntiry = _context.Entry(entity);
             updateEntiry.State = EntityState.Modified;
-            context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

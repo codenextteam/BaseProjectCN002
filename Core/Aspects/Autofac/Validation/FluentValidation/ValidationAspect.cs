@@ -1,6 +1,7 @@
 ﻿using Castle.DynamicProxy;
 using Core.CrossCuttingConcern.Validation.FluentValidation;
 using Core.Helpers.Interceptors;
+using Entities.Abstract;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,8 @@ using System.Threading.Tasks;
 
 namespace Core.Aspects.Autofac.Validation.FluentValidation
 {
-    public class ValidationAspect : MethodInterception
+    public class ValidationAspect<T> : MethodInterception
+        where T : class, IEntity, new()
     {
         private readonly Type _validatorType;
 
@@ -28,9 +30,9 @@ namespace Core.Aspects.Autofac.Validation.FluentValidation
             var validator = (IValidator)Activator.CreateInstance(_validatorType);
             var entityType = _validatorType.BaseType.GetGenericArguments()[0];
             var entities = invocation.Arguments.Where(t => t.GetType() == entityType);
-            foreach (var entity in entities)
+            foreach (T entity in entities)
             {
-                ValidationTool.Validation(validator, entity);
+                ValidationTool<T>.Validation(validator, entity);
             }
         }
     }

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Core.CrossCuttingConcern.Validation.FluentValidation
 {
-    public static class ValidationTool
+    public static class ValidationTool<T> where T : class , IEntity, new()
     {
-        public static void Validation(IValidator validator, object entity)
+        public static void Validation(IValidator validator, T entity)
         {
-            var validationContext = new ValidationContext<object>(entity);
+            var validationContext = new ValidationContext<T>(entity);
             var result = validator.Validate(validationContext);
             if (!result.IsValid)
             {

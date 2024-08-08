@@ -3,7 +3,7 @@ using Business.Concrete;
 using DataAccess.Concrete.EF;
 using Entities.Concrete;
 
-ProductManager productManager = new ProductManager(new EfProductDal());
+ProductManager productManager = new ProductManager(new EfProductDal(new EcommerceCN002Context()));
 
 
 Product product1 = new() {ProductName = "I", Description = "256ssd", Price = 2220, ProductCount = 20, IsDiscount = false, DiscountRate = 0, IsDelete = false };
