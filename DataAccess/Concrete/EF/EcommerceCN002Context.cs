@@ -18,7 +18,10 @@ namespace DataAccess.Concrete.EF
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+		public DbSet<ServiceHead> ServiceHeads { get; set; }
+		public DbSet<ServiceItem> ServiceItems { get; set; }
 
 
-    }
+
+	}
 }

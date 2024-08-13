@@ -13,7 +13,9 @@ namespace Entities.Concrete
     {
         public string ProductName { get; set; }
         public string Description { get; set; }
+        public string PhotoUrl { get; set; }
         public int ProductCount { get; set; }
+        public bool IsFeatured { get; set; }
         public decimal Price { get; set; }
         public bool IsDiscount { get; set; }
         public int DiscountRate { get; set; }

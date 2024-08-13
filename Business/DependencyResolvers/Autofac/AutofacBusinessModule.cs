@@ -24,18 +24,22 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
             builder.RegisterType<OrderManager>().As<IOrderService>().SingleInstance();
             builder.RegisterType<EfOrderDal>().As<IOrderDal>().SingleInstance();
-            builder.RegisterType<OrderDetailManager>().As<IOrderDetailService>().SingleInstance();
+			builder.RegisterType<ServiceHeadManager>().As<IServiceHeadService>().SingleInstance();
+			builder.RegisterType<EfServiceHeadDal>().As<IServiceHeadDal>().SingleInstance();
+			builder.RegisterType<ServiceItemManager>().As<IServiceItemService>().SingleInstance();
+			builder.RegisterType<EfServiceItemDal>().As<IServiceItemDal>().SingleInstance();
+			builder.RegisterType<OrderDetailManager>().As<IOrderDetailService>().SingleInstance();
             builder.RegisterType<EfOrderDetailDal>().As<IOrderDetailDal>().SingleInstance();
             builder.RegisterType<EcommerceCN002Context>().As<EcommerceCN002Context>().SingleInstance();
 
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
-                    .EnableInterfaceInterceptors(new ProxyGenerationOptions()
-                    {
-                        Selector = new AspectInterceptorSelector()
-                    }).SingleInstance();
+            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
+                .EnableInterfaceInterceptors(new ProxyGenerationOptions()
+                {
+                    Selector = new AspectInterceptorSelector()
+                }).SingleInstance();
         }
 
 

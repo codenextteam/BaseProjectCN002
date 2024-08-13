@@ -10,5 +10,6 @@ namespace Business.Abstract
         void DeleteProduct(Product product);
         IDataResult<List<Product>> GetAllProducts();
         IDataResult<Product> GetProductById(int id);
+        IDataResult<List<Product>> GetAllProductsByIsFeatured();
     }
 }

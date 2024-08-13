@@ -48,7 +48,20 @@ namespace Business.Concrete
             }
         }
 
-        public IDataResult<Product> GetProductById(int id)
+		public IDataResult<List<Product>> GetAllProductsByIsFeatured()
+		{
+			var result = _productDal.GetAll(p=>p.IsFeatured == true).Take(3).ToList();
+            if (result.Count > 0) 
+            {
+                return new SuccessDataResult<List<Product>>(result, "siyahi yuklendi");
+            }
+			else
+			{
+				return new ErrorDataResult<List<Product>>(result, "xeta bas verdi");
+			}
+		}
+
+		public IDataResult<Product> GetProductById(int id)
         {
             var result = _productDal.Get(p => p.Id == id && p.IsDelete == false);
             if (result != null)
