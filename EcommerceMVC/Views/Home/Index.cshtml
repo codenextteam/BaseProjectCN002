@@ -39,11 +39,12 @@
 			<!-- End Column 1 -->
 			<!-- Start Column 2 -->
 		     @{
-				 foreach (var product in Model.ProductsGetByIsFeatured)
+				foreach (var product in Model.ProductImages)
 				{
 					<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-						<a class="product-item" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id">
-							<img src="@product.PhotoUrl" class="img-fluid product-thumbnail">
+						<a class="product-item" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.ProductId">
+							
+								<img src="@product.PhotoUrl" class="img-fluid product-thumbnail">
 							<h3 class="product-title">@product.ProductName</h3>
 							<strong class="product-price">@product.Price Azn</strong>
 
