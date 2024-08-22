@@ -13,7 +13,7 @@ namespace Core.Helpers.Business.ImageHelper
     public class AddImageHelper (IWebHostEnvironment webHostEnvironment) : IImageAddHelper
     {
 		// NuGet\Install-Package Microsoft.AspNetCore.Hosting.WindowsServices -Version 8.0.8 packageManager console-da yuklenmelidir
-		private IWebHostEnvironment _webHostEnvironment = webHostEnvironment;
+		private readonly IWebHostEnvironment _webHostEnvironment = webHostEnvironment;
 		public void AddImage(IFormFile formFile, string guid)
         {
             if (formFile.Length > 0 && formFile.Name !=null)
